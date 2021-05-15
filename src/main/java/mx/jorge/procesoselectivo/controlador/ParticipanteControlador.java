@@ -142,7 +142,7 @@ public class ParticipanteControlador {
 
 	}
 
-	@DeleteMapping(path = "/agrega", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@DeleteMapping(path = "/elimina", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public String eliminaParticipante(HttpServletRequest request) {
 		int id = Integer.parseInt(request.getParameter("id"));
 		if(!participante_bd.existsById(id)) {
