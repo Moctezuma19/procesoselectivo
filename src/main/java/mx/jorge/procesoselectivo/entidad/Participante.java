@@ -32,7 +32,7 @@ public class Participante {
 	
 	@ManyToOne(targetEntity = Clase.class)
 	@LazyCollection(LazyCollectionOption.FALSE)
-	@JoinColumn(name = "fk_id_usuario", referencedColumnName = "id", nullable = false)
+	@JoinColumn(name = "fk_id_clase", referencedColumnName = "id", nullable = false)
 	private Clase fk_id_clase;
 
 	public int getId() {
