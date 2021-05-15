@@ -62,12 +62,12 @@ public class ParticipanteControlador {
 	@GetMapping(path = "/id", produces = MediaType.APPLICATION_JSON_VALUE)
 	public String obtenParticipantePorId(HttpServletRequest request) {
 		int id = Integer.parseInt(request.getParameter("id"));
-		Participante p = participante_bd.findById(id).get();
 		JSONObject part = new JSONObject();
-		if (p == null) {
+		if (!participante_bd.existsById(id)) {
 			part.put("id", -1);
 			return part.toString();
 		}
+		Participante p = participante_bd.findById(id).get();
 
 		part.put("id", p.getId());
 		part.put("nombre", p.getNombre());
@@ -122,10 +122,10 @@ public class ParticipanteControlador {
 			p.setCorreo(json.getString("correo"));
 			p.setObservaciones(json.getString("observaciones"));
 			Clase c = clase_bd.findById(json.getInt("clase")).get();
-			
+
 			JSONObject resp = new JSONObject();
-			if(c == null) {
-				resp.put("id",-1);
+			if (c == null) {
+				resp.put("id", -1);
 				return resp.toString();
 			}
 			p.setFk_id_clase(c);
@@ -134,21 +134,24 @@ public class ParticipanteControlador {
 			return resp.toString();
 		} catch (IOException e) {
 			System.out.println("IOException: " + e);
-			return "{id:-1}";
+			return "{\"id\":-1}";
 		} catch (Exception f) {
 			System.out.println("Exception: " + f);
-			return "{id:-1}";
+			return "{\"id\":-1}";
 		}
-		
+
 	}
-	
+
 	@DeleteMapping(path = "/agrega", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public String eliminaParticipante(HttpServletRequest request) {
 		int id = Integer.parseInt(request.getParameter("id"));
+		if(!participante_bd.existsById(id)) {
+			return "{\"id\":-1}";
+		}
 		Participante p = participante_bd.findById(id).get();
-		
-		return null;
-		
+		participante_bd.delete(p);
+		return "{ \"id\":" + p.getId() + "}";
+
 	}
 
 }
