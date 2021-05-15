@@ -17,7 +17,7 @@ import org.hibernate.annotations.LazyCollectionOption;
 
 
 @Entity
-@Table(name = "Participante")
+@Table(name = "Clase")
 public class Clase {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,9 +30,9 @@ public class Clase {
 	@Column(name = "tipo", nullable = true, length = 25)
 	private String tipo;
 
-	@OneToMany(mappedBy = "fk_id_participante", targetEntity = Participante.class)
+	@OneToMany(mappedBy = "fk_id_clase", targetEntity = Participante.class)
 	@LazyCollection(LazyCollectionOption.TRUE)
-	private List<Participante> contactos = new ArrayList<>();
+	private List<Participante> participantes = new ArrayList<>();
 
 	public int getId() {
 		return id;
@@ -58,12 +58,12 @@ public class Clase {
 		this.tipo = tipo;
 	}
 
-	public List<Participante> getContactos() {
-		return contactos;
+	public List<Participante> getParticipantes() {
+		return participantes;
 	}
 
-	public void setContactos(List<Participante> contactos) {
-		this.contactos = contactos;
+	public void setParticipantes(List<Participante> contactos) {
+		this.participantes = participantes;
 	}
 	
 	
