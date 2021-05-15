@@ -31,3 +31,7 @@ Recibe un parametro nombrado `nombre`, es un nombre parcial o completo, devuelve
 Recibe un json con la informacion asociada a una clase a través del cuerpo de la petición http (ej. `{descripcion:'Sistemas operativos', tipo:'presencial'}`), devuelve un json con el id asignado, de haber error se devolverá `{id:-1}`.
 ### /elimina (disponible por DELETE)
 Recibe un parametro nombrado `id`, es el identificador de la clase, elimina sus datos asociados (ej. `http://localhost:8080/restapi/clase/elimina?id=24`) y devuelve el identificador de la clase y los identificadores de los participantes asociados, de no haber algun error devolverá `{id:-1}`.
+
+## Notas importantes
+* Todo Participante que se quiera agregar necesita que antes exista la Clase, pero toda clase puede agregarse aún si no hay participantes.
+* La creación y modificación de las tablas de la base de datos se hace de forma automática al desplegarse la aplicación, así que para modificar la base de datos es necesario modificar los archivos java de las entidades.
