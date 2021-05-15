@@ -35,3 +35,5 @@ Recibe un parametro nombrado `id`, es el identificador de la clase, elimina sus 
 ## Notas importantes
 * Todo Participante que se quiera agregar necesita que antes exista la Clase, pero toda clase puede agregarse aún si no hay participantes.
 * La creación y modificación de las tablas de la base de datos se hace de forma automática al desplegarse la aplicación, así que para modificar la base de datos es necesario modificar los archivos java de las entidades.
+* Falta verificar la integridad del json, y por supuesto la seguridad de acceso a la API.
+* Los metodos **postClase** y **postParticipante** no fueron implementados debido a falta de información de su funcionalidad.

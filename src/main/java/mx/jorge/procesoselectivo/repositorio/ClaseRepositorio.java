@@ -12,7 +12,7 @@ public interface ClaseRepositorio extends JpaRepository<Clase, Integer> {
 	@Query("SELECT c FROM Clase c")
 	public List<Clase> findAll();
 	
-	@Query("SELECT c FROM Clase c WHERE c.nombre LIKE CONCAT('%',:nombre,'%')")
-	public List<Clase> findByName(@Param("nombre") String nombre);
+	@Query("SELECT c FROM Clase c WHERE c.descripcion LIKE CONCAT('%',:descripcion,'%')")
+	public List<Clase> findByName(@Param("descripcion") String nombre);
 
 }
