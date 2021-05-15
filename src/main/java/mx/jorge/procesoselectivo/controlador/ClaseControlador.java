@@ -11,6 +11,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -112,7 +113,7 @@ public class ClaseControlador {
 			part.put("id", c.getId());
 			part.put("descripcion", c.getDescripcion());
 			part.put("tipo", c.getTipo());
-			LinkedList<Participante> participantes = new LinkedList<>(c.getContactos());
+			LinkedList<Participante> participantes = new LinkedList<>(c.getParticipantes());
 			if (participantes.size() == 0) {
 				respuesta.put(part);
 				continue;
@@ -151,6 +152,28 @@ public class ClaseControlador {
 			System.out.println("Exception: " + f);
 			return "{\"id\":-1}";
 		}
+
+	}
+	
+	@DeleteMapping(path = "/elimina", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public String eliminaClase(HttpServletRequest request) {
+		int id = Integer.parseInt(request.getParameter("id"));
+		if(!clase_bd.existsById(id)) {
+			return "{\"id\":-1}";
+		}
+		Clase c = clase_bd.findById(id).get();
+		LinkedList<Participante> participantes = new LinkedList<>(c.getParticipantes());
+		JSONArray p2 = new JSONArray();
+		for(Participante p: participantes) {
+			participante_bd.delete(p);
+			p2.put(p.getId());
+		}
+		JSONObject respuesta = new JSONObject();
+		respuesta.put("id", c.getId());
+		
+		respuesta.put("participantes", p2);
+		//participante_bd.delete(p);
+		return respuesta.toString();
 
 	}
 
