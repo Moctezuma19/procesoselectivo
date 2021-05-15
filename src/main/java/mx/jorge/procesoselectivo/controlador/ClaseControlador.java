@@ -23,7 +23,7 @@ import mx.jorge.procesoselectivo.repositorio.ClaseRepositorio;
 import mx.jorge.procesoselectivo.repositorio.ParticipanteRepositorio;
 
 @RestController
-@RequestMapping("/clases")
+@RequestMapping("/clase")
 public class ClaseControlador {
 	@Autowired
 	private ParticipanteRepositorio participante_bd;
@@ -46,7 +46,7 @@ public class ClaseControlador {
 			part.put("id", c.getId());
 			part.put("descripcion", c.getDescripcion());
 			part.put("tipo", c.getTipo());
-			LinkedList<Participante> participantes = new LinkedList<>(c.getContactos());
+			LinkedList<Participante> participantes = new LinkedList<>(c.getParticipantes());
 			if (participantes.size() == 0) {
 				respuesta.put(part);
 				continue;
@@ -80,7 +80,7 @@ public class ClaseControlador {
 		part.put("descripcion", c.getDescripcion());
 		part.put("tipo", c.getTipo());
 
-		LinkedList<Participante> participantes = new LinkedList<>(c.getContactos());
+		LinkedList<Participante> participantes = new LinkedList<>(c.getParticipantes());
 		if (participantes.size() == 0) {
 			return part.toString();
 		}

@@ -1,10 +1,10 @@
 # REST API Prueba técnica backend
 ## Descripción 
-La aplicación sirve para agregar datos sobre Clases y Alumnos, la aplicación ha sido desarrollada con Spring framework y Java.
+La aplicación sirve para agregar datos sobre Clases y Participantes, la aplicación ha sido desarrollada con Spring framework y Java.
 ## Requisitos
-Java 7.x o superior, MariaDB, Spring Tools Suite 4
+Java 7.x o superior, MariaDB, Spring Tools Suite 4.
 ## Instalación
-Hay que modificar el archivo `application.properties` y modificar el nombre de la base de datos, usuario y contraseña
+Hay que modificar el archivo `application.properties` y modificar el nombre de la base de datos, usuario y contraseña.
 ## Uso
 Abrir con STS 4 para mayor rapidez en la prueba y ejecutar, la aplicación REST estará disponible en `http://localhost:8080/restapi`
 ## /participante
@@ -12,12 +12,22 @@ Las siguientes operaciones para `http://localhost:8080/restapi/participante` est
 ### /todos (disponible por GET)
 No recibe ningun parametro, devuelve todos los participantes y su Clase asociada, de no haber ninguno devolverá `[{id:-1}]`.
 ### /id (disponible por GET)
-Recibe un parametro nombrado `id`, es el identificador del alumno, devuelve sus datos asociados (ej. `http://localhost:8080/restapi/participante/id?id=24`), de no encontrarse devolverá `{id:-1}`.
+Recibe un parametro nombrado `id`, es el identificador del participante, devuelve sus datos asociados (ej. `http://localhost:8080/restapi/participante/id?id=24`), de no encontrarse devolverá `{id:-1}`.
 ### /nombre (disponiblepor GET)
 Recibe un parametro nombrado `nombre`, es un nombre parcial o completo, devuelve los datos asociados del nombre coincidente (ej. `http://localhost:8080/restapi/participante/nombre?nombre=Bern`), de no encontrarse devolvera `[{id:-1}]`.
 ### /agrega (disponible por PUT)
-Recibe un json con la informacion asociada a un alumno a través del cuerpo de la petición http (ej. `{nombre:'Jordi', correo:'kokiri@link.ja',observaciones:'Platica mucho', clase:2}`), devuelve un json con el id asignado, de haber error se devolverá `{id:-1}`.
+Recibe un json con la informacion asociada a un participante a través del cuerpo de la petición http (ej. `{nombre:'Jordi', correo:'kokiri@link.ja',observaciones:'Platica mucho', clase:2}`), devuelve un json con el id asignado, de haber error se devolverá `{id:-1}`.
 ### /elimina (disponible por DELETE)
-Recibe un parametro nombrado `id`, es el identificador del alumno, elimina sus datos asociados (ej. `http://localhost:8080/restapi/participante/elimina?id=24`), de no haber algun error devolverá `{id:-1}`.
+Recibe un parametro nombrado `id`, es el identificador del participante, elimina sus datos asociados (ej. `http://localhost:8080/restapi/participante/elimina?id=24`) y devuelve el identificador del participante, de no haber algun error devolverá `{id:-1}`.
 ## /clase
-Aún en desarrollo.
+Las siguientes operaciones para `http://localhost:8080/restapi/clase` estan disponibles.
+### /todos (disponible por GET)
+No recibe ningun parametro, devuelve todos las clases y sus participantes asociada, de no haber ninguno devolverá `[{id:-1}]`.
+### /id (disponible por GET)
+Recibe un parametro nombrado `id`, es el identificador de la clase, devuelve sus datos asociados (ej. `http://localhost:8080/restapi/clase/id?id=24`), de no encontrarse devolverá `{id:-1}`.
+### /nombre (disponiblepor GET)
+Recibe un parametro nombrado `nombre`, es un nombre parcial o completo, devuelve los datos asociados del nombre coincidente (ej. `http://localhost:8080/restapi/clase/nombre?nombre=Sistemas`), de no encontrarse devolvera `[{id:-1}]`.
+### /agrega (disponible por PUT)
+Recibe un json con la informacion asociada a una clase a través del cuerpo de la petición http (ej. `{descripcion:'Sistemas operativos', tipo:'presencial'}`), devuelve un json con el id asignado, de haber error se devolverá `{id:-1}`.
+### /elimina (disponible por DELETE)
+Recibe un parametro nombrado `id`, es el identificador de la clase, elimina sus datos asociados (ej. `http://localhost:8080/restapi/clase/elimina?id=24`) y devuelve el identificador de la clase y los identificadores de los participantes asociados, de no haber algun error devolverá `{id:-1}`.
