@@ -1,4 +1,5 @@
 # REST API Prueba técnica backend
+Autor: *Jorge Erick Rivera López*
 ## Descripción 
 La aplicación sirve para agregar datos sobre Clases y Participantes, la aplicación ha sido desarrollada con Spring framework y Java.
 ## Requisitos
