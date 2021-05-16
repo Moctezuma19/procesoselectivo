@@ -1,9 +1,9 @@
 # REST API Prueba técnica backend
 Autor: *Jorge Erick Rivera López*
 ## Descripción 
-La aplicación sirve para agregar datos sobre Clases y Participantes, la aplicación ha sido desarrollada con Spring framework y Java.
+La aplicación sirve para agregar datos sobre Clases y Participantes, la aplicación ha sido desarrollada con Spring framework y Java 11.
 ## Requisitos
-Java 7.x o superior, MariaDB, Spring Tools Suite 4.
+Java 11, MariaDB, Spring Tools Suite 4.
 ## Instalación
 Hay que modificar el archivo `application.properties` y modificar el nombre de la base de datos, usuario y contraseña.
 ## Uso
